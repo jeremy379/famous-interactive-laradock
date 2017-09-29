@@ -8,6 +8,7 @@
    - Download Docker (with docker-compose)
    - Go to your web development directory and git clone Laradock
         `git clone https://github.com/laradock/laradock.git`
+   - Remove the .git directory in the laradock directory (`rm -rf .git`)     
    - The architecture of your web directory should be
         + Project-1
         + Project-2
@@ -60,7 +61,6 @@
         
         `#RUN cd /root/.ssh && chmod 600 * && chmod 644 *.pub`   
                
-               
 ## Docker usefull commande
 
    - List running machine `docker ps` 
@@ -68,6 +68,6 @@
    - Kill `docker kill <id>` id comre from ps command
    - Clear unused image `docker image prune`
    - See existing images `docker images`
-   - Remove an image `docker image <id|name>`        
+   - Remove an image `docker image <id|name>`
             
         
