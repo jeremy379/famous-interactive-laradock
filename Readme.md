@@ -60,6 +60,14 @@
         
         `#RUN cd /root/.ssh && chmod 600 * && chmod 644 *.pub`   
                
-        
+               
+## Docker usefull commande
+
+   - List running machine `docker ps` 
+   - Shutdown `docker-compose down` (in the laradock directory)
+   - Kill `docker kill <id>` id comre from ps command
+   - Clear unused image `docker image prune`
+   - See existing images `docker images`
+   - Remove an image `docker image <id|name>`        
             
         
