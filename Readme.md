@@ -1,24 +1,26 @@
-## Laradock for Famous
+## Laradock for FamousGrey Interactive
 
    Laradock is a configuration package for docker for Laravel but also for any other web project. 
-- [Laradock Doc](http://laradock.io/).
+   - [Laradock Doc](http://laradock.io/).
 
 ## Install Docker & Laradock
 
    - Download Docker (with docker-compose)
-   - Go to your web development directory and git clone Laradock
-        `git clone https://github.com/laradock/laradock.git`
-   - Remove the .git directory in the laradock directory (`rm -rf .git`)     
-   - The architecture of your web directory should be
-        + Project-1
-        + Project-2
+   - Go to your web development directory and clone the Laradock repository.
+         `git clone https://github.com/laradock/laradock.git`
+   - Remove the .git directory in the laradock directory 
+         `cd laradock && rm -rf .git`
+   - The architecture of your web development directory should be:
+        + Project 1
+        + Project 2
         + laradock
-   - One laradock can handle multiple project who require the same specification. If you want multiple specification (Php 5.6 and 7, ... ) you can create two laradock directoy
-        + Project-1 (Php 5.6)
-        + Project-2 (Php 7.2)
+   - One Laradock installation can handle multiple projects that require the same setup. If you want multiple installations with different specifications (PHP 5.6, PHP 7.1, ...), you can create multiple Laradock directories.
+        + Project-1 (PHP 5.6)
+        + Project-2 (PHP 7.1)
         + laradock-5.6
-        + laradock-7.2
-   - Once Laradock installed, go the the laradock directory and copy/rename env-example
+        + laradock-7.1
+        
+   - Once Laradock is installed, go the the Laradock directory and copy/rename env-example
    
         `cp env-example .env`
         
