@@ -27,7 +27,7 @@
         
    - Once Laradock is installed, go the the Laradock directory and copy/rename env-example
    
-        cp env-example .env
+         cp env-example .env
         
    - Update this .env file with the right PHP version you want. Also, you may need to update the default port if you have conflicts with your current installation:
         - MYSQL_PORT=3306 
@@ -36,35 +36,46 @@
         
    - Add the alias if you have a .aliases file in your home directory:
         
-        echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
-        
-        reload
+         echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
+         reload
         
    - If not: 
    
-   cd /~
-   nano .bash_profile
+         cd /~
+         nano .bash_profile
    
    And add the line: 
    
-   echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
+         echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
    
    Then refresh with 
    
-   source ~/.bash_profile
+         source ~/.bash_profile
     
-   - Move the dockerproject.sh file (the file is here if you don't have it yet: https://github.com/famousinteractive/laradock-and-famous/blob/master/dockerproject.sh ) : 
-        `mv dockerproject.sh /usr/local/bin/dockerproject &&  chmod +x /usr/local/bin/dockerproject` 
+    
+   - Clone this repo somewhere on your machine: 
+   
+         git clone https://github.com/famousinteractive/laradock-and-famous
          
-        - This script will generate the nginx configuration and some sh script to help to manage the project.
+   - Move the dockerproject.sh file to your local bin directory:
+   
+         mv dockerproject.sh /usr/local/bin/dockerproject &&  chmod +x /usr/local/bin/dockerproject
+         
+   - This script will generate the nginx configuration and some sh script to help to manage the project.
             - You'll need to provide the path to your laradock directory (absolute path)
             - The project name need to be without special char & space.
-            - The nginx config files are in `<laradockDirectory>/nginx/sites`
+            - The nginx config files are in <laradockDirectory>/nginx/sites
   
 ### Run
-   - Consider to read the known bug before :)
-   - In the laradock directory
-        - `docker-compose build` and go take a coffee for you and your coworker. It's required only the first time and when you update the laradock .env file
+   - Consider to read the known bugs below before running for the first time.
+   - Go to the Laradock directory:
+   
+         docker-compose build 
+         
+      Now go take a coffee for you and your coworker. This might take a while. 
+      The build is required only the first time and when you update the laradock .env file.
+      
+      
         - `docker-compose up -d nginx php-fpm workspace mysql` (The -d run it as a deamon, you may want to remove it in some specific situation)      
 
    - Running command in your project via docker
