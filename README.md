@@ -78,8 +78,7 @@
       
       
         - `docker-compose up -d nginx php-fpm workspace mysql` (The -d run it as a deamon, you may want to remove it in some specific situation)      
-        
-        - add `phpmyadmin` if you want to use it (access: 127.0.0.1:<port defined in .env, default 8080)
+        - add `phpmyadmin` if you want to use it (access: 127.0.0.1:<port defined in .env, default 8080)
 
    - Running command in your project via docker
         - Use `docker-exec` (the alias created before).
