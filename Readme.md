@@ -19,7 +19,9 @@
         + laradock-5.6
         + laradock-7.2
    - Once Laradock installed, go the the laradock directory and copy/rename env-example
+   
         `cp env-example .env`
+        
    - Update this .env file with the right Php version you want. Also, you may need to update the default port if you have conflict with your current installation 
         - MYSQL_PORT=3306 
         - NGINX_HOST_HTTP_PORT=80
