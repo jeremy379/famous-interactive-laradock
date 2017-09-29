@@ -55,7 +55,7 @@
     
    - Clone this repo somewhere on your machine: 
    
-         git clone https://github.com/famousinteractive/laradock-and-famous
+         git clone https://github.com/famousinteractive/famous-interactive-laradock.git
          
    - Move the dockerproject.sh file to your local bin directory:
    
