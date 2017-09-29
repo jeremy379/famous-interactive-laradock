@@ -42,7 +42,8 @@
             - The project name need to be without special char & space.
             - The nginx config files are in `<laradockDirectory>/nginx/sites`
   
-### Run            
+### Run
+   - Consider to read the known bug before :)
    - In the laradock directory
         - `docker-compose build` and go take a coffee for you and your coworker. It's required only the first time and when you update the laradock .env file
         - `docker-compose up -d nginx php-fpm workspace mysql` (The -d run it as a deamon, you may want to remove it in some specific situation)      
@@ -62,7 +63,14 @@
         `#COPY /ssh_keys/. /root/.ssh/`
         
         `#RUN cd /root/.ssh && chmod 600 * && chmod 644 *.pub`   
-               
+     
+   - With Php 5.6, the package php-worker will give you an error as the Dockerfile-56 don't exists yet. Copy Dockerfile-70 and update the line `FROM:php:7-alpine` with `FROM:php:5.6-alpine`
+   
+      Comment the line `RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached`
+  
+   
+    
+            
 ## Docker usefull commande
 
    - List running machine `docker ps` 
