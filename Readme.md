@@ -6,11 +6,11 @@
 ## Install Docker & Laradock
 
    - Download Docker (with docker-compose)
-   - Go to your web development directory and clone the Laradock repository.
+   - Go to your web development directory and clone the Laradock repository:
    
          git clone https://github.com/laradock/laradock.git 
          
-   - Remove the .git directory in the laradock directory 
+   - Remove the .git directory in the laradock directory:
    
          cd laradock && rm -rf .git
          
@@ -18,7 +18,8 @@
         + Project 1
         + Project 2
         + laradock
-   - One Laradock installation can handle multiple projects that require the same setup. If you want multiple installations with different specifications (PHP 5.6, PHP 7.1, ...), you can create multiple Laradock directories.
+        
+   - One Laradock installation can handle multiple projects that require the same setup. If you want multiple installations with different specifications (PHP 5.6, PHP 7.1, ...), you can create multiple Laradock directories:
         + Project-1 (PHP 5.6)
         + Project-2 (PHP 7.1)
         + laradock-5.6
@@ -26,19 +27,31 @@
         
    - Once Laradock is installed, go the the Laradock directory and copy/rename env-example
    
-        `cp env-example .env`
+        cp env-example .env
         
-   - Update this .env file with the right Php version you want. Also, you may need to update the default port if you have conflict with your current installation 
+   - Update this .env file with the right PHP version you want. Also, you may need to update the default port if you have conflicts with your current installation:
         - MYSQL_PORT=3306 
         - NGINX_HOST_HTTP_PORT=80
         - NGINX_HOST_HTTPS_PORT=443        
-   - Add the aliases, with famous mac installation and reload your terminal
         
-        `echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases` 
+   - Add the alias if you have a .aliases file in your home directory:
         
-        `reload`
+        echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
         
-        On other installation: `nano .bash_profile`, add the line and then refresh with `source ~/.bash_profile`
+        reload
+        
+   - If not: 
+   
+   cd /~
+   nano .bash_profile
+   
+   And add the line: 
+   
+   echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
+   
+   Then refresh with 
+   
+   source ~/.bash_profile
     
    - Move the dockerproject.sh file (the file is here if you don't have it yet: https://github.com/famousinteractive/laradock-and-famous/blob/master/dockerproject.sh ) : 
         `mv dockerproject.sh /usr/local/bin/dockerproject &&  chmod +x /usr/local/bin/dockerproject` 
