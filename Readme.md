@@ -34,7 +34,7 @@
         
         On other installation: `nano .bash_profile`, add the line and then refresh with `source ~/.bash_profile`
     
-   - Move the dockerproject.sh file : 
+   - Move the dockerproject.sh file (the file is here if you don't have it yet: https://github.com/famousinteractive/laradock-and-famous/blob/master/dockerproject.sh ) : 
         `mv dockerproject.sh /usr/local/bin/dockerproject &&  chmod +x /usr/local/bin/dockerproject` 
          
         - This script will generate the nginx configuration and some sh script to help to manage the project.
