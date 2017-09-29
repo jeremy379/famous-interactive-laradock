@@ -8,7 +8,7 @@
    - Download Docker (with docker-compose)
    - Go to your web development directory and clone the Laradock repository.
    
-         `git clone https://github.com/laradock/laradock.git`
+         $ git clone https://github.com/laradock/laradock.git 
          
    - Remove the .git directory in the laradock directory 
          `cd laradock && rm -rf .git`
