@@ -18,7 +18,7 @@
         + Project-2 (Php 7.2)
         + laradock-5.6
         + laradock-7.2
-   - Once Laradock installed, go the the directory and copy env-example
+   - Once Laradock installed, go the the laradock directory and copy/rename env-example
         `cp env-example .env`
    - Update this .env file with the right Php version you want. Also, you may need to update the default port if you have conflict with your current installation 
         - MYSQL_PORT=3306 
