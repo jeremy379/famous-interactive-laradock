@@ -100,10 +100,7 @@
    
       Comment the line `RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached`
    
-   - Sometimes, `apt-get update`command may fail. If that's happen go in the Dockerfile of the package who was building when it crash and add 
-      `RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*` 
-      
-      before the first `RUN apt-get update`. By default, you can add the line for the package beanstalkd, certbot. In case of error, you'll need to do `docker-compose build --no-cache` 
+   - In case or issue, you call always remove the image or rebuild without cache `docker-compose build --no-cache` 
  
  
 ## For Laravel    
