@@ -68,7 +68,7 @@
             - The nginx config files are in <laradockDirectory>/nginx/sites.
   
 ### Run
-   - Consider to read the known bugs below before running for the first time.
+   - /!\ Consider to read the known bugs below before running for the first time.
    - Go to the Laradock directory:
    
          docker-compose build 
@@ -103,11 +103,7 @@
    - Sometimes, `apt-get update`command may fail. If that's happen go in the Dockerfile of the package who was building when it crash and add 
       `RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*` 
       
-      before the first `RUN apt-get update`. By default, you can add the line for the package beanstalkd, certbot.
-
-   - When a package fail, it may be usefull to rebuild only this one with 
-   
-      `docker-compose build <package-name> --no-cache`
+      before the first `RUN apt-get update`. By default, you can add the line for the package beanstalkd, certbot. In case of error, you'll need to do `docker-compose build --no-cache` 
  
  
 ## For Laravel    
