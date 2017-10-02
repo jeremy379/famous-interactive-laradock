@@ -71,9 +71,9 @@
    - /!\ Read the known bugs below before running for the first time.
    - Go to the Laradock directory:
 
-         docker-compose up -d nginx php-fpm workspace
+         docker-compose up -d nginx php-fpm workspace mysql
 
-      use the following to use the mysql from docker-compose
+      Add phpmyadmin to use it 
 
           docker-compose up -d nginx php-fpm workspace mysql phpmyadmin
 
@@ -120,8 +120,6 @@
    - Port: the one set, default is 3306
    ### Via phpmyadmin
    - Connect to 127.0.0.1:8080 (or the non-default port in .env). Host is `mysql`. login and password are root by default.
-   ### Using the Host mysql
-   - In the database config file of your project, set the HOST as the hostname of your machine (You can get it whit `hostname` in a terminal)
           
 ## Docker usefull commande
 
