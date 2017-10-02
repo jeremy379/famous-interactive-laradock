@@ -71,11 +71,11 @@
    - /!\ Read the known bugs below before running for the first time.
    - Go to the Laradock directory:
 
-         docker-compose up -d nginx php-fpm workspace mysql
+         docker-compose up -d nginx php-fpm workspace mariadb
 
       Add phpmyadmin to use it 
 
-          docker-compose up -d nginx php-fpm workspace mysql phpmyadmin
+          docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
 
       The parameters -d allow docker to run as a deamon.      
 
