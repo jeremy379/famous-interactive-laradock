@@ -111,6 +111,15 @@
    - Add or update in the .env of your Laravel folder the variable
    
          DB_HOST=mysql
+         
+## Connection to Mysql 
+
+   ### Via sequel Pro
+   - Host: 127.0.01
+   - Username & passord: root / root or the one you set in .env file
+   - Port: the one set, default is 3306
+   ### Via phpmyadmin
+   - Connect to 127.0.0.1:8080 (or the non-default port in .env). Host is `mysql`. login and password are root by default. 
             
 ## Docker usefull commande
 
