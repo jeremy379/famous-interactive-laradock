@@ -103,7 +103,7 @@
    - Sometimes, `apt-get update`command may fail. If that's happen go in the Dockerfile of the package who was building when it crash and add 
       `RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*` 
       
-      before the first `RUN apt-get update`. Usually, the crash is in beanstalkd. 
+      before the first `RUN apt-get update`. By default, you can add the line for the package beanstalkd, certbot
  
  
 ## For Laravel    
