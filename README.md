@@ -100,9 +100,12 @@
    
       Comment the line `RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached`
    
-   - Sometimes, `apt-get update`command may fail. If that's happen go in the Dockerfile of the package who was building when it crash and add `RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*` before the first `RUN apt-get update`
+   - Sometimes, `apt-get update`command may fail. If that's happen go in the Dockerfile of the package who was building when it crash and add 
+      `RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*` 
+      
+      before the first `RUN apt-get update`. Usually, the crash is in beanstalkd. 
  
-  
+ 
 ## For Laravel    
     
    - Add or update in the .env of your Laravel folder the variable
