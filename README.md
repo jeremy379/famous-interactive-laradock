@@ -99,6 +99,9 @@
    - With Php 5.6, the package php-worker will give you an error as the Dockerfile-56 don't exists yet. Copy Dockerfile-70 and update the line `FROM:php:7-alpine` with `FROM:php:5.6-alpine`
    
       Comment the line `RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached`
+   
+   - Sometimes, `apt-get update`command may fail. If that's happen go in the Dockerfile of the package who was building when it crash and add `RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*` before the first `RUN apt-get update`
+ 
   
 ## For Laravel    
     
