@@ -110,7 +110,7 @@
     
    - Add or update in the .env of your Laravel folder the variable
 
-         DB_HOST=mysql
+         DB_HOST=mariadb
 
 ## Connection to Mysql
 
