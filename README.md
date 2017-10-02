@@ -76,14 +76,14 @@
       Now go take a coffee for you and your coworker. This might take a while. 
       The build is required only the first time and when you update the laradock .env file.
       
-   - OR run only the build and up the container you want
+   - Or run only the build and up the container you want:
         
          docker-compose up -d nginx php-fpm workspace mysql 
          
       The parameters -d allow docker to run as a deamon. 
       add `phpmyadmin` if you want to use it (access: 127.0.0.1:<port defined in .env, default 8080)
 
-   - Running command in your project via docker
+   - Running command in your project via docker (Run these command inside the laradock directory)
         - Use `docker-exec` (the alias created before).
         - You can run `docker-compose exec --user=laradock workspace bash` in order to enter inside the VM machine
         - You can run command directly in your project by running 
