@@ -117,5 +117,9 @@
    - Clear unused image `docker image prune`
    - See existing images `docker images`
    - Remove an image `docker image <id|name>`
-            
+   - Delete all containers
+      `docker rm $(docker ps -a -q)`
+   - Delete all images
+      `docker rmi $(docker images -q)`
+            
         
