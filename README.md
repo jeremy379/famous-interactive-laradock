@@ -68,7 +68,7 @@
             - The nginx config files are in <laradockDirectory>/nginx/sites.
   
 ### Run
-   - /!\ Consider to read the known bugs below before running for the first time.
+   - /!\ Read the known bugs below before running for the first time.
    - Go to the Laradock directory:
    
          docker-compose build 
@@ -76,10 +76,10 @@
       Now go take a coffee for you and your coworker. This might take a while. 
       The build is required only the first time and when you update the laradock .env file.
       
-    - OR, run only the build and up the container you want  
+    - OR run only the build and up the container you want=  
         
-         docker-compose up -d nginx php-fpm workspace mysql 
-         
+         `docker-compose up -d nginx php-fpm workspace mysql `
+         
       (The -d run it as a deamon, you may want to remove it in some specific situation)      
     - add `phpmyadmin` if you want to use it (access: 127.0.0.1:<port defined in .env, default 8080)
 
