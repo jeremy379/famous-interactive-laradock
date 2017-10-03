@@ -113,8 +113,10 @@
          DB_HOST=mariadb
 
 ## Connection to Mysql
-
-   ### Via sequel Pro
+   ### In your code
+   - The DB HOST need to be `mariadb` (or `mysql` if you use mysql instead)
+   ### Via sequel Pro
+   ### Via sequel Pro
    - Host: 127.0.01
    - Username & passord: root / root or the one you set in .env file
    - Port: the one set, default is 3306
@@ -133,4 +135,24 @@
       `docker rm $(docker ps -a -q)`
    - Delete all images
       `docker rmi $(docker images -q)`
+      
+## Php.ini
+
+   - You can add specific info to the php.ini by updating the `laravel.ini` file in the php-fpm directory.
+   - To add more execution time for your script, add this in the `laravel.ini`
+   
+         max_execution_time=480
+         default_socket_timeout=3600
+         request_terminate_timeout=480
+      
+     And this in you rnginx config file
+     
+         fastcgi_read_timeout 480;
+         
+     Just before
+     
+         include fastcgi_params;
+      
+     
+   
             
