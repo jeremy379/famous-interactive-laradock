@@ -29,7 +29,7 @@
 
          cp env-example .env
 
-   - Update this .env file with the right PHP version you want.
+   - Update this .env file with the right PHP version you want. 
    Also, you may need to update the default ports if you have conflicts with your current installation:
 
         MYSQL_PORT=3306
@@ -43,11 +43,17 @@
    - Add the alias if you have a .aliases file in your home directory. Execute :
 
          echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
+         echo "alias laradock-down=\"docker-compose down\"" >> ~/.aliases
+         echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.aliases
+         echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.aliases
          reload
 
    - If not, execute : 
 
          echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.bash_profile
+         echo "alias laradock-down=\"docker-compose down\"" >> ~/.bash_profile
+         echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.bash_profile
+         echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.bash_profile
 
    Then refresh with:
 
@@ -61,24 +67,28 @@
 
          mv dockerproject.sh /usr/local/bin/dockerproject && chmod +x /usr/local/bin/dockerproject
 
-   - This script will generate the nginx configuration and some sh scripts to help to manage the project.
+   - With this script you can run `dockerproject`and it will generate the nginx configuration and some sh scripts to help to manage the project.
             - You'll need to provide the path to your Laradock directory (absolute path).
             - The project name needs to be without special characters and can't contain any spaces.
             - The nginx config files are in <laradockDirectory>/nginx/sites.
 
 ### Run
    - /!\ Read the known bugs below before running for the first time.
-   - Go to the Laradock directory:
+   - Go to the Laradock directory and execute the alias created previously:
+   
+         laradock-up
+         
+      Or the full version if you want something specific: 
 
          docker-compose up -d nginx php-fpm workspace mariadb
 
-      Add phpmyadmin to use it
+      Add phpmyadmin to use it (I suggest to use Sequel Pro instead)
 
           docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
 
       The parameters -d allow docker to run as a deamon.      
 
-   - Or run only the full build:
+   - Or run the full build (not suggested as it's consume disk space and a lot of time):
 
           docker-compose build
 
