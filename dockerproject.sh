@@ -78,6 +78,7 @@ echo "server {
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param APPLICATION_ENV development;
         include fastcgi_params;
     }
 
@@ -117,6 +118,7 @@ echo "server {
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param APPLICATION_ENV development;
         include fastcgi_params;
     }
 
