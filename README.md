@@ -114,14 +114,15 @@
 
 ## Connection to Mysql
    ### In your code
-   - The DB HOST need to be `mariadb` (or `mysql` if you use mysql instead)
-   ### Via sequel Pro
+   - The DB HOST need to be `mariadb` (or `mysql` if you use mysql instead)
    ### Via sequel Pro
    - Host: 127.0.01
    - Username & passord: root / root or the one you set in .env file
    - Port: the one set, default is 3306
    ### Via phpmyadmin
    - Connect to 127.0.0.1:8080 (or the non-default port in .env). Host is `mysql`. login and password are root by default.
+   ### Data's location
+   - The datas are localized in `~/.laradock/data` on the host machine. 
           
 ## Docker usefull commande
 
