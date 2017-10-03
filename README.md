@@ -33,22 +33,19 @@
    Also, you may need to update the default ports if you have conflicts with your current installation:
 
         MYSQL_PORT=3306
+        
         NGINX_HOST_HTTP_PORT=80
+        
         NGINX_HOST_HTTPS_PORT=443
 
-   - Add the alias if you have a .aliases file in your home directory:
+   - Add the alias if you have a .aliases file in your home directory. Execute :
 
          echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
          reload
 
-   - If not:
+   - If not, execute : 
 
-         cd /~
-         nano .bash_profile
-
-   And add the line:
-
-         echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
+         echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.bash_profile
 
    Then refresh with:
 
