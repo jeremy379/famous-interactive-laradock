@@ -73,7 +73,7 @@
 
          docker-compose up -d nginx php-fpm workspace mariadb
 
-      Add phpmyadmin to use it 
+      Add phpmyadmin to use it
 
           docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
 
@@ -113,16 +113,24 @@
          DB_HOST=mariadb
 
 ## Connection to Mysql
+
    ### In your code
+
    - The DB HOST need to be `mariadb` (or `mysql` if you use mysql instead)
+
    ### Via sequel Pro
+
    - Host: 127.0.01
    - Username & passord: root / root or the one you set in .env file
    - Port: the one set, default is 3306
+
    ### Via phpmyadmin
+
    - Connect to 127.0.0.1:8080 (or the non-default port in .env). Host is `mysql`. login and password are root by default.
+ 
    ### Data's location
-   - The datas are localized in `~/.laradock/data` on the host machine. 
+
+   - The datas are localized in `~/.laradock/data` on the host machine.
           
 ## Docker usefull commande
 
@@ -136,24 +144,20 @@
       `docker rm $(docker ps -a -q)`
    - Delete all images
       `docker rmi $(docker images -q)`
-      
+
 ## Php.ini
 
    - You can add specific info to the php.ini by updating the `laravel.ini` file in the php-fpm directory.
    - To add more execution time for your script, add this in the `laravel.ini`
-   
+
          max_execution_time=480
          default_socket_timeout=3600
          request_terminate_timeout=480
-      
+
      And this in you rnginx config file
-     
+
          fastcgi_read_timeout 480;
-         
+
      Just before
-     
+
          include fastcgi_params;
-      
-     
-   
-            
