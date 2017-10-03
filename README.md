@@ -5,7 +5,7 @@
 
 ## Install Docker & Laradock
 
-   - Download Docker (with docker-compose)
+   - Download [Docker](https://www.docker.com/docker-mac)
    - Go to your web development directory and clone the Laradock repository:
 
          git clone https://github.com/laradock/laradock.git
@@ -19,26 +19,20 @@
         + Project 2
         + laradock
 
-   - One Laradock installation can handle multiple projects that require the same setup. If you want multiple installations with different specifications (PHP 5.6, PHP 7.1, ...), you can create multiple Laradock directories:
-        + Project-1 (PHP 5.6)
-        + Project-2 (PHP 7.1)
-        + laradock-5.6
-        + laradock-7.1
-
    - Once Laradock is installed, go the the Laradock directory and copy/rename env-example:
 
          cp env-example .env
 
-   - Update this .env file with the right PHP version you want. 
-   Also, you may need to update the default ports if you have conflicts with your current installation:
-
-        MYSQL_PORT=3306
-        
-        NGINX_HOST_HTTP_PORT=80
-        
-        NGINX_HOST_HTTPS_PORT=443
+   - Update this .env file 
    
-   - Check the variable `WORSPACE_INSTALL_XX` and `PHP_FPM_INSTALL_XX`. Setting the following to true is suggested : `NODE, YARN, IMAGEMAGICK`
+        - with the right PHP version you want. 
+        - you may need to update the default ports if you have conflicts with your current installation:
+
+            MYSQL_PORT=3306 
+            NGINX_HOST_HTTP_PORT=80
+            NGINX_HOST_HTTPS_PORT=443
+   
+        - Check the variable `WORSPACE_INSTALL_XX` and `PHP_FPM_INSTALL_XX`. Setting the following to true is suggested : `NODE, YARN, IMAGEMAGICK`
 
    - Add the alias if you have a .aliases file in your home directory. Execute :
 
@@ -48,29 +42,29 @@
          echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.aliases
          reload
 
-   - If not, execute : 
+   - If not, add it to your bash_profile file. Execute : 
 
          echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.bash_profile
          echo "alias laradock-down=\"docker-compose down\"" >> ~/.bash_profile
          echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.bash_profile
          echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.bash_profile
 
-   Then refresh with:
+        Then refresh with:
 
          source ~/.bash_profile
 
-   - Clone this repository somewhere on your machine:
+   - Install `dockerproject` the helper to generate nginx config file and helper script
 
-         git clone https://github.com/famousinteractive/famous-interactive-laradock.git
-
-   - Move the dockerproject.sh file to your local bin directory and set the proper rights:
-
+         wget https://raw.githubusercontent.com/famousinteractive/famous-interactive-laradock/master/dockerproject.sh
          mv dockerproject.sh /usr/local/bin/dockerproject && chmod +x /usr/local/bin/dockerproject
 
-   - With this script you can run `dockerproject`and it will generate the nginx configuration and some sh scripts to help to manage the project.
-            - You'll need to provide the path to your Laradock directory (absolute path).
-            - The project name needs to be without special characters and can't contain any spaces.
-            - The nginx config files are in <laradockDirectory>/nginx/sites.
+
+   - With this script you can run `dockerproject` and it will generate the nginx configuration and some sh scripts to help to manage the project.
+                
+            - You'll need to provide the path to your Laradock directory (absolute path). Use `pwd` in the laradock directory to get it.
+            - The project name needs to be the directory name of your project.
+            - The nginx config files are in <laradockDirectory>/nginx/sites. 
+            - Run `laradock-restart` to update your change
 
 ### Run
    - /!\ Read the known bugs below before running for the first time.
@@ -90,16 +84,24 @@
 
    - Or run the full build (not suggested as it's consume disk space and a lot of time):
 
-          docker-compose build
+            docker-compose build
 
    - Running command in your project via docker (Run these command inside the laradock directory)
         - Use `docker-exec` (the alias created before).
-        - You can run `docker-compose exec --user=laradock workspace bash` in order to enter inside the VM machine
+        - You can run `docker-compose exec --user=laradock workspace bash` in order to enter inside the VM machine (`docker-exec` + enter key works too)
         - You can run command directly in your project by running
 
             `docker-exec project--<PROJECTNAME> <command>`
 
             Example: `docker-exec project--test1 php artisan list`
+            
+   ### Stop
+   
+        laradock-stop
+        
+   ### Restart
+        
+        laradock-restart              
 
 ## Laradock known bug
    - You may have issue with the aws package in the laradock directory during the build. If so, go to aws/Dockerfile file and comment the following line
@@ -114,20 +116,14 @@
 
    - In case or issue, you call always remove the image or rebuild without cache `docker-compose build --no-cache`
 
-
-## For Laravel
-    
-   - Add or update in the .env of your Laravel folder the variable
-
-         DB_HOST=mariadb
-
 ## Connection to Mysql
 
    ### In your code
 
    - The DB HOST need to be `mariadb` (or `mysql` if you use mysql instead)
+   - For Laravel, set `DB_HOST=mariadb` in the `.env` file
 
-   ### Via sequel Pro
+   ### Via sequel Pro
 
    - Host: 127.0.01
    - Username & passord: root / root or the one you set in .env file
@@ -135,11 +131,11 @@
 
    ### Via phpmyadmin
 
-   - Connect to 127.0.0.1:8080 (or the non-default port in .env). Host is `mysql`. login and password are root by default.
+   - Connect to 127.0.0.1:8080 (or the non-default port in .env). Host is `mysql`. login and password are root by default.
  
    ### Data's location
 
-   - The datas are localized in `~/.laradock/data` on the host machine.
+   - The datas are localized in `~/.laradock/data` on the host machine.
           
 ## Docker usefull commande
 
@@ -156,17 +152,17 @@
 
 ## Php.ini
 
-   - You can add specific info to the php.ini by updating the `laravel.ini` file in the php-fpm directory.
-   - To add more execution time for your script, add this in the `laravel.ini`
+   - You can add specific info to the php.ini by updating the `laravel.ini` file in the php-fpm directory.
+   - To add more execution time for your script, add this in the `laravel.ini`
 
          max_execution_time=480
          default_socket_timeout=3600
          request_terminate_timeout=480
 
-     And this in you rnginx config file
+        And this in your nginx config file
 
-         fastcgi_read_timeout 480;
+            fastcgi_read_timeout 480;
 
-     Just before
+        Just before
 
-         include fastcgi_params;
+            include fastcgi_params;
