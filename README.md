@@ -62,10 +62,10 @@
       - Run the command inside your project.
       - Update the default prompted variables if required.
       - The script will set up the nginx config file, your local host and it will restart Docker with the default container. 
-      - The nginx config files are in <laradockDirectory>/nginx/sites.
+      - The nginx config files are in the laradock-directory under /nginx/sites.
 
 ### Run
-   - WARNING: Read the known bugs below before running for the first time.
+   - WARNING: Read the known bugs below before running for the first time.
    - Go to the Laradock directory and execute the alias created previously:
    
          laradock-up
