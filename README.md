@@ -8,7 +8,7 @@
    - Download [Docker](https://www.docker.com/docker-mac)
    - Go to your web development directory and clone the Laradock repository:
 
-         git clone https://github.com/laradock/laradock.git
+         git clone https://github.com/famousinteractive/laradock.git
 
    - Remove the .git directory in the laradock directory:
 
