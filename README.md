@@ -36,7 +36,6 @@
 
    - Add the alias if you have a .aliases file in your home directory. Execute :
 
-         echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.aliases
          echo "alias laradock-down=\"docker-compose down\"" >> ~/.aliases
          echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.aliases
          echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.aliases
@@ -44,7 +43,6 @@
 
    - If not, add it to your bash_profile file. Execute : 
 
-         echo "alias docker-exec=\"docker-compose exec --user=laradock workspace bash $*\"" >> ~/.bash_profile
          echo "alias laradock-down=\"docker-compose down\"" >> ~/.bash_profile
          echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.bash_profile
          echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.bash_profile
@@ -86,14 +84,13 @@
 
             docker-compose build
 
-   - Running command in your project via docker (Run these command inside the laradock directory)
-        - Use `docker-exec` (the alias created before).
-        - You can run `docker-compose exec --user=laradock workspace bash` in order to enter inside the VM machine (`docker-exec` + enter key works too)
+   - Running command in your project via docker (Run these command inside your project)
+        - Use `./docker-exec` (the alias created before) to connect to the docker machine
         - You can run command directly in your project by running
 
-            `docker-exec project--<PROJECTNAME> <command>`
+            `./docker-exec <command>`
 
-            Example: `docker-exec project--test1 php artisan list`
+            Example: `./docker-exec php artisan list`
             
    ### Stop
    
