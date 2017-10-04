@@ -124,8 +124,8 @@ echo "server {
         log_not_found off;
     }
 
-    error_log /var/log/nginx/$PROJECTNAME_error.log;
-    access_log /var/log/nginx/$PROJECTNAME_access.log;
+    error_log /var/log/nginx/$PROJECTNAME.error.log;
+    access_log /var/log/nginx/$PROJECTNAME.access.log;
 }
 "   > $LARADOCKDIR/nginx/sites/$PROJECTNAME.conf
 
@@ -164,8 +164,8 @@ echo "server {
         log_not_found off;
     }
 
-    error_log /var/log/nginx/$PROJECTNAME_error.log;
-    access_log /var/log/nginx/$PROJECTNAME_access.log;
+    error_log /var/log/nginx/$PROJECTNAME.error.log;
+    access_log /var/log/nginx/$PROJECTNAME.access.log;
 }
 
 "   > $LARADOCKDIR/nginx/sites/$PROJECTNAME.conf
@@ -202,6 +202,6 @@ echo "Restart docker with container [nginx php-fpm workspace mariadb] ..."
 
 cd $LARADOCKDIR
 docker-compose down
-docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
+docker-compose up -d nginx php-fpm workspace mariadb
 
 echo "All Done!"
