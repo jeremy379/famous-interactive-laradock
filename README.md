@@ -61,10 +61,10 @@
 
    - With this script you can run `dockerproject` and it will generate the nginx configuration and some sh scripts to help to manage the project.
                 
-            - You'll need to provide the path to your Laradock directory (absolute path). Use `pwd` in the laradock directory to get it.
-            - The project name needs to be the directory name of your project.
-            - The nginx config files are in <laradockDirectory>/nginx/sites. 
-            - Run `laradock-restart` to update your change
+            - Run the command inside your Php project
+            - Update default prompted variable if required.
+            - The script will set up the nginx config file, your local host and it'll restart docker with the default container. 
+            - The nginx config files are in <laradockDirectory>/nginx/sites.
 
 ### Run
    - /!\ Read the known bugs below before running for the first time.
