@@ -78,7 +78,7 @@ echo "server {
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-        fastcgi_param APPLICATION_ENV development;
+	fastcgi_param APPLICATION_ENV development;
         include fastcgi_params;
     }
 
@@ -91,8 +91,8 @@ echo "server {
         log_not_found off;
     }
 
-    error_log /var/log/nginx/laravel_error.log;
-    access_log /var/log/nginx/laravel_access.log;
+    error_log /var/log/nginx/$PROJECTNAME_error.log;
+    access_log /var/log/nginx/$PROJECTNAME_access.log;
 }
 "   > $LARADOCKDIR/nginx/sites/$PROJECTNAME.conf
 
@@ -118,8 +118,8 @@ echo "server {
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-        fastcgi_param APPLICATION_ENV development;
-        include fastcgi_params;
+	fastcgi_param APPLICATION_ENV development;
+	include fastcgi_params;
     }
 
     location ~ /\.ht {
@@ -131,8 +131,8 @@ echo "server {
         log_not_found off;
     }
 
-    error_log /var/log/nginx/app_error.log;
-    access_log /var/log/nginx/app_access.log;
+    error_log /var/log/nginx/$PROJECTNAME_error.log;
+    access_log /var/log/nginx/$PROJECTNAME_access.log;
 }
 
 "   > $LARADOCKDIR/nginx/sites/$PROJECTNAME.conf
