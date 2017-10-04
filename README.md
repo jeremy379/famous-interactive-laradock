@@ -39,14 +39,14 @@
    - Add the alias if you have a .aliases file in your home directory. Execute :
 
          echo "alias laradock-down=\"docker-compose down\"" >> ~/.aliases
-         echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.aliases
+         echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin\"" >> ~/.aliases
          echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.aliases
          reload
 
    - If not, add it to your bash_profile file. Execute : 
 
          echo "alias laradock-down=\"docker-compose down\"" >> ~/.bash_profile
-         echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb\"" >> ~/.bash_profile
+         echo "alias laradock-up=\"docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin\"" >> ~/.bash_profile
          echo "alias laradock-restart=\"laradock-down && laradock-up\"" >> ~/.bash_profile
 
         Then refresh with:
@@ -74,12 +74,8 @@
          
       Or the full version if you want something specific: 
 
-         docker-compose up -d nginx php-fpm workspace mariadb
-
-      Add phpmyadmin to use it (I suggest to use Sequel Pro instead)
-
-          docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
-
+         docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
+         
       The parameters -d allow docker to run as a deamon.      
 
    - Or run the full build (not suggested as it's consume disk space and a lot of time):
