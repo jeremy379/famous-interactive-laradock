@@ -66,10 +66,27 @@ if [ "$CONFIRMATION" == "Y" ] || [ "$CONFIRMATION" == "y" ]; then
 
 echo "Write docker-exec script helper ..."
 
-    cd $LARADOCKDIR/../
-echo "#!/bin/sh
+echo "
+#!/bin/sh
 
-cd /var/www/$PROJECTNAME && \$*" > project--$PROJECTNAME
+if [ "\$#" -eq 0 ]; then
+  cd $LARADOCKDIR
+  docker-compose exec --user=laradock workspace bash
+else
+  if [ "\$1" == "pwd" ]; then
+    cd $PROJECTNAME
+
+    PARAMS="\${@:2}"
+    echo \$PARAMS
+    \$PARAMS
+  else
+    cd $LARADOCKDIR
+    docker-compose exec --user=laradock workspace bash $PROJECTNAME/docker-exec pwd \$*
+  fi
+fi
+" > docker-exec
+
+chmod +x docker-exec
 
     if [ "$LARAVEL" == "Y" ] || [ "$LARAVEL" == "y" ]; then
 
