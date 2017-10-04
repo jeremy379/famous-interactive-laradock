@@ -103,18 +103,16 @@
 
         `#RUN cd /root/.ssh && chmod 600 * && chmod 644 *.pub`
 
-   - With PHP 5.6, the package php-worker will give you an error as the Dockerfile-56 doesn't exist yet. Copy Dockerfile-70 and update the line `FROM:php:7-alpine` with `FROM:php:5.6-alpine`
+   - With PHP 5.6, the package php-worker will give you an error as the Dockerfile-56 doesn't exist yet. Copy Dockerfile-70 and update the line `FROM:php:7-alpine` with `FROM:php:5.6-alpine`. Comment the line `RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached`
 
-      Comment the line `RUN pecl channel-update pecl.php.net && pecl install memcached && docker-php-ext-enable memcached`
-
-   - In case of an issue, you call always remove the image or rebuild without cache `docker-compose build --no-cache`
+   - In case of an issue, you call always remove the image or rebuild without cache `docker-compose build --no-cache`.
 
 ## Connection to MySQL
 
    ### In your code
 
-   - The DB HOST needs to be `mariadb` (or `mysql` if you use mysql instead)
-   - For Laravel, set `DB_HOST=mariadb` in the `.env` file
+   - The DB HOST needs to be `mariadb` (or `mysql` if you use mysql instead).
+   - For Laravel, set `DB_HOST=mariadb` in the `.env` file.
 
    ### Via Sequel Pro
 
@@ -132,14 +130,14 @@
           
 ## Docker: usefull commands
 
-   - List running machine: `docker ps`.
+   - List running machine: `docker ps`
    - Shutdown: `docker-compose down`. Run this in the laradock directory.
-   - Kill: `docker kill <id>`. Get ID from running `docker ps`.
-   - Clear unused images: `docker image prune`.
-   - See existing images: `docker images`.
-   - Remove an image: `docker image <id|name>`.
-   - Delete all containers: `docker rm $(docker ps -a -q)`.
-   - Delete all images: `docker rmi $(docker images -q)`.
+   - Kill: `docker kill <id>`. Get ID from running `docker ps`
+   - Clear unused images: `docker image prune`
+   - See existing images: `docker images`
+   - Remove an image: `docker image <id|name>`
+   - Delete all containers: `docker rm $(docker ps -a -q)`
+   - Delete all images: `docker rmi $(docker images -q)`
 
 ## PHP.ini
 
