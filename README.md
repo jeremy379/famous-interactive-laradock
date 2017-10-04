@@ -33,6 +33,10 @@
                 NGINX_HOST_HTTPS_PORT=443
    
         - Check the variable `WORSPACE_INSTALL_XX` and `PHP_FPM_INSTALL_XX`. Setting the following to true is suggested : `NODE, YARN, IMAGEMAGICK`
+        
+        - Look for `PMA_DB_ENGINE` to `mariadb`
+        
+        - Check the variable `WORSPACE_INSTALL_XX` and `PHP_FPM_INSTALL_XX`. Setting the following to true is suggested : `NODE, YARN, IMAGEMAGICK`
 
    - Add the alias if you have a .aliases file in your home directory. Execute :
 
