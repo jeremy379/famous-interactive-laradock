@@ -4,18 +4,27 @@
 
 PROJECTNAME=""
 ServerName=""
-LARADOCKDIR=""
 LARAVEL="Yes"
+LARADOCKDIR=""
+CURRENT_DIRECTORY=${PWD##*/}
+
+LARADOCKDIRDEFAULT="$PWD/../laradock"
+
+LARADOCKDIRDEFAULT="$(cd $LARADOCKDIRDEFAULT; pwd)"
+
 
 ##Question
 
 echo "Docker project starter"
 
-while [ "$PROJECTNAME" = "" ]
- do
-    echo " > Enter your project name (No space, no special chararacter, same name as the directory used) :"
-        read PROJECTNAME
-done
+
+echo " > Enter your project name (same name as the directory used) : [$CURRENT_DIRECTORY]"
+    read PROJECTNAME
+
+if [ "$PROJECTNAME" = "" ]; then
+    PROJECTNAME="$CURRENT_DIRECTORY"
+fi
+
 
 echo ""
 echo "Vhost ServerName : [$PROJECTNAME.localhost]"
@@ -26,11 +35,14 @@ echo "Vhost ServerName : [$PROJECTNAME.localhost]"
     fi
 
 echo ""
-    while [ "$LARADOCKDIR" = "" ]
-     do
-        echo " > Absolute path to your Laradock Docker directory :"
-            read LARADOCKDIR
-    done
+
+echo " > Absolute path to your Laradock Docker directory : [$LARADOCKDIRDEFAULT]"
+    read LARADOCKDIR
+
+    if [ "$LARADOCKDIR" = "" ]; then
+        LARADOCKDIR="$LARADOCKDIRDEFAULT"
+    fi
+
 
 echo ""
 echo "Is it a Laravel Project ? [Y]/N"
@@ -52,12 +64,16 @@ echo "> Y/N"
 
 if [ "$CONFIRMATION" == "Y" ] || [ "$CONFIRMATION" == "y" ]; then
 
+echo "Write docker-exec script helper ..."
+
     cd $LARADOCKDIR/../
 echo "#!/bin/sh
 
 cd /var/www/$PROJECTNAME && \$*" > project--$PROJECTNAME
 
     if [ "$LARAVEL" == "Y" ] || [ "$LARAVEL" == "y" ]; then
+
+echo "Write Nginx config file ..."
 echo "server {
 
     listen 80;
@@ -97,7 +113,7 @@ echo "server {
 "   > $LARADOCKDIR/nginx/sites/$PROJECTNAME.conf
 
     else
-
+echo "Write Nginx config file ..."
 echo "server {
 
     listen 80;
@@ -142,6 +158,8 @@ else
     exit
 fi
 
+echo "Add hosts in your /etc/hosts files ..."
+
 # insert/update hosts entry (https://stackoverflow.com/questions/19339248/append-line-to-etc-hosts-file-with-shell-script)
 ip_address="127.0.0.1"
 # find existing instances in the host file and save the line numbers
@@ -162,5 +180,11 @@ else
     echo "Adding new hosts entry."
     echo "$host_entry" | sudo tee -a /etc/hosts > /dev/null
 fi
+
+echo "Restart docker with container [nginx php-fpm workspace mariadb] ..."
+
+cd $LARADOCKDIR
+docker-compose down
+docker-compose up -d nginx php-fpm workspace mariadb
 
 echo "All Done!"
