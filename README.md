@@ -59,15 +59,14 @@
 
 
    - With this script you can run `dockerproject` and it will generate the nginx configuration and some sh scripts to help to manage the project.
-                
-            - Run the command inside your project.
-            - Update the default prompted variables if required.
-            - The script will set up the nginx config file, your local host and it will restart Docker with the default container. 
-            - The nginx config files are in <laradockDirectory>/nginx/sites.
+      - Run the command inside your project.
+      - Update the default prompted variables if required.
+      - The script will set up the nginx config file, your local host and it will restart Docker with the default container. 
+      - The nginx config files are in <laradockDirectory>/nginx/sites.
 
 ### Run
    - WARNING: Read the known bugs below before running for the first time.
-   - Go to the Laradock directory and execute the alias created previously:
+   - Go to the Laradock directory and execute the alias created previously:
    
          laradock-up
          
