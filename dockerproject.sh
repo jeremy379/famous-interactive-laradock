@@ -202,6 +202,6 @@ echo "Restart docker with container [nginx php-fpm workspace mariadb] ..."
 
 cd $LARADOCKDIR
 docker-compose down
-docker-compose up -d nginx php-fpm workspace mariadb
+docker-compose up -d nginx php-fpm workspace mariadb phpmyadmin
 
 echo "All Done!"
