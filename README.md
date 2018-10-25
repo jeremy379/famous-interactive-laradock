@@ -54,7 +54,7 @@
 
    - Install `dockerproject`: the helper script to generate nginx config files.
 
-         wget https://raw.githubusercontent.com/famousinteractive/famous-interactive-laradock/master/dockerproject.sh
+         wget https://raw.githubusercontent.com/jeremy379/jeremy-laradock/master/dockerproject.sh
          mv dockerproject.sh /usr/local/bin/dockerproject && chmod +x /usr/local/bin/dockerproject
 
 
