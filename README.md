@@ -25,6 +25,10 @@
 
    - Update this .env file with the right PHP version you want 5.6 or 7.1). 
    
+   - If you want to have multiple version of Laradock (with different version of PHP for example), you should update the following key in the .env file. This key is used to generate the docker container and will allow you to have different container for the various laradock version. (i.e laradock-php56 , laradock-php73, ... ).
+   
+                 COMPOSE_PROJECT_NAME=laradock
+   
    - You may need to update the default ports if you have conflicts with your current installation:
 
                 MYSQL_PORT=3306 
