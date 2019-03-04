@@ -1,4 +1,4 @@
-## Laradock for FamousGrey Interactive
+## Laradock 
 
    Laradock is a configuration package for docker for Laravel but also for any other web project:
    - [Laradock Documentation](http://laradock.io/)
