@@ -166,7 +166,23 @@
       
          mv laradock /usr/local/bin/laradock && chmod + x /usr/local/bin/laradock
       
-  - This script will also copy all your local hosts from /etc/hosts to the /etc/hosts inside docker (via an update of docker-compose.yml). In your own /etc/hosts, you should add the following marker to say to laradock from where he should take the hosts
+   - This script will also copy all your local hosts from /etc/hosts to the /etc/hosts inside docker (via an update of docker-compose.yml). In your own /etc/hosts, you should add the following marker to say to laradock from where he should take the hosts
   
          ###DOCKER_HOST###
-  
+                
+   - This script assume your laradock configuration is in `~/projects/laradock` and than your local hosts are with .localhost extension.
+   
+   - Sample of local /etc/hosts compatible file
+   
+         ##
+         # Host Database
+         #
+         # localhost is used to configure the loopback interface
+         # when the system is booting.  Do not change this entry.
+         ##
+         127.0.0.1	localhost
+         255.255.255.255	broadcasthost
+         ::1             localhost
+         ###DOCKER_HOST###
+         127.0.0.1 site1.localhost
+         127.0.0.1 site2.localhost
