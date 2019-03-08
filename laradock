@@ -1,0 +1,64 @@
+#!/bin/sh
+
+MODE="$1";
+HOSTIP="$(ipconfig getifaddr en0)"
+CURRENT_DIRECTORY=${PWD}
+HOSTSCONTENT="$(cat /etc/hosts)"
+HOSTSLIST="$(sed -e '1,/###DOCKER_HOST###/d' /etc/hosts)"
+LARADOCKDIR=~/projects/laradock
+CONTAINERLIST="nginx php-fpm workspace mariadb phpmyadmin mailhog redis"
+
+echo "Laradock perform $MODE on container $CONTAINERLIST"
+
+echo "Move in laradock directory ..."
+cd $LARADOCKDIR
+
+echo "Backup docker-compose.yml ..."
+cp docker-compose.yml docker-compose.yml.back
+
+echo "Fetching /etc/hosts list ..."
+HOSTSLIST_IP="${HOSTSLIST//127.0.0.1 /- \\\"}"
+HOSTSLIST_IP="${HOSTSLIST_IP//localhost/localhost:$HOSTIP\\\"}"
+DEFAULT_DOCKER_HOST="- \\\"dockerhost:\${DOCKER_HOST_IP}\\\"
+"
+
+echo "Updating docker-compose.yml with extra hosts ... "
+
+RUBY_YAML_PARSE="
+# YAML is part of the standard library.
+require 'yaml'
+
+# YAML.load parses a YAML string to appropriate Ruby objects.
+# So you can first load the contents of the file with File#read,
+# then parse it.
+yaml_string = File.read \"docker-compose.yml\"
+data = YAML.load yaml_string
+
+# Now you have all of it in data.
+data['services']['php-fpm']['extra_hosts'] = \"$DEFAULT_DOCKER_HOST$HOSTSLIST_IP\"
+data['services']['workspace']['extra_hosts'] = \"$DEFAULT_DOCKER_HOST$HOSTSLIST_IP\"
+
+# Once you are done manipulating them, dump it back with YAML.dump
+# to convert it back to YAML.
+output = YAML.dump data
+File.write(\"docker-compose.yml\", output)
+"
+image=$(ruby -ryaml -e "$RUBY_YAML_PARSE")
+
+sed -i -e 's/|-//g' docker-compose.yml
+
+
+if [ "$MODE" == "up" ]; then
+  docker-compose up -d $CONTAINERLIST
+fi
+if [ "$MODE" == "down" ]; then
+  docker-compose down
+fi
+
+if [ "$MODE" == "restart" ]; then
+  docker-compose down
+  docker-compose up -d $CONTAINERLIST
+fi
+
+
+cd $CURRENT_DIRECTORY
