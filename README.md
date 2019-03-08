@@ -159,3 +159,14 @@
         Just before:
 
             include fastcgi_params;
+            
+## Extra laradock bin with share /etc/hosts between parent machine and docker
+
+   - If you want to be able to do `laradock up`, `laradock down` and `laradock restart` everywhere, you can install the laradock script
+      
+         mv laradock /usr/local/bin/laradock && chmod + x /usr/local/bin/laradock
+      
+  - This script will also copy all your local hosts from /etc/hosts to the /etc/hosts inside docker (via an update of docker-compose.yml). In your own /etc/hosts, you should add the following marker to say to laradock from where he should take the hosts
+  
+         ###DOCKER_HOST###
+  
