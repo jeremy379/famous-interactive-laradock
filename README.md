@@ -160,6 +160,23 @@
 
             include fastcgi_params;
             
+## Speed up laradock (and docker) on mac 
+
+Based on [this](https://github.com/laradock/laradock/issues/1149) ticket  , the commit [here](https://github.com/idflood/laradock/commit/cad44b583d89360b4c73156f5647e3aa4da2726e) and the info [here](https://medium.com/@sean.handley/how-to-set-up-docker-for-mac-with-native-nfs-145151458adc), you can setup the nfs on mac to speed up laradock (speeded by 70%)
+
+ - In docker-compose.yml, add the nsfmount volumes (at the end of the volume part, juste before services)
+
+         nfsmount:
+          driver: "${VOLUMES_DRIVER}"
+          driver_opts:
+            type: nfs
+            o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+            device: ":${APP_CODE_PATH_HOST}"
+     
+   - Then run the script ntfsmount_check.sh. It's available on the third link or I put it back in this repo too
+   - Run your laradock start command.
+         
+
 ## Extra laradock bin with share /etc/hosts between parent machine and docker
 
    - If you want to be able to do `laradock up`, `laradock down` and `laradock restart` everywhere, you can install the laradock script
